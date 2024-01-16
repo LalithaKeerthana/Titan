@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mobile Web Design</title>
+  <!-- Bootstrap CSS link -->
+  <!-- Add this to the head section -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+
+  <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+  <!-- Bootstrap JS and Popper.js links (order matters) -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <style>
+  
+  @media only screen and (max-width: 768px) {
+    .container {
+      max-width: 100%;
+    } }
+  
+  
+  .dropdown-arrow {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 5px; /* Adjust the spacing between text and arrow */
+    vertical-align: middle;
+    border-top: 5px solid;
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent;
+  }
+    /* Add this CSS for the large button */
+    .large-button {
+      display: block;
+      margin: 20px auto; /* Center the button horizontally */
+      padding: 15px 30px;
+      font-size: 16px;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      border-radius: 30px;
+      background-color: #626a6f; /* Button background color */
+      color: white; /* Button text color */
+      transition: background-color 0.3s; /* Add transition for smoother color change */
+    }
+
+    .large-button:hover {
+      background-color: #828d93; /* Change background color on hover */
+    }
+
+    /* Add this CSS for the light text */
+    .light-text {
+      text-align: center;
+      color: #777; /* Light text color */
+      margin-bottom: 20px;
+    }
+
+  /* Add this CSS for the send button with a gap */
+.email-input {
+  display: flex;
+  align-items: center;
+  margin-top: 20px; /* Add some space between the button and the email input */
+}
+
+.email-input input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px 5px 5px 5px; /* Rounded corners on the left for the input */
+  margin-right: 5px; /* Add a 5px gap between the input and button */
+}
+
+.email-input button {
+  padding: 10px;
+  border: none;
+  border-radius: 10x 10px 10px 10px; /* Rounded corners on the right for the button */
+  background-color: #5e5e5e; /* Button background color */
+  color: white; /* Button text color */
+  cursor: pointer;
+  transition: background-color 0.3s; 
+  height: 45px;
+  width: 60px;/* Add transition for smoother color change */
+}
+.footer-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px; 
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+  }
+
+  /* Style for the rounded buttons */
+  .rounded-button {
+    display: inline-block;
+   
+    font-size: 14px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border: 1px solid gray;
+    border-radius: 20px;
+    background-color: #f8f6f5; /* Pale peach color */
+    color: #333; /* Text color */
+    transition: background-color 0.3s, box-shadow 0.3s; /* Add transition for smoother color and shadow change */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Box shadow */
+  }
+
+  .rounded-button:hover {
+    background-color: #e8e4e5; /* Change background color on hover to a slightly different shade */
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Change box shadow on hover */
+  }
+.social-icons {
+    text-align: center; /* Center-align the icons */
+  }
+
+  .icon-img {
+   /* Adjust the height as needed */
+    margin: 5px; /* Add margin for spacing between icons */
+  }
+
+  .icon-large {
+  width: 45px;
+  height: 45px;
+}
+
+
+
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #ececec;
+      
+     color: black;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    /* Add this CSS for the rounded button */
+    .rounded-button {
+      display: block;
+      margin: 20px auto; /* Center the button horizontally */
+      padding: 10px 20px;
+      font-size: 14px;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      border-radius: 20px;
+      background-color: #f1efee; /* Pale peach color */
+      color: #333; /* Text color */
+      transition: background-color 0.3s, box-shadow 0.3s; /* Add transition for smoother color and shadow change */
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Box shadow */
+    }
+
+    .rounded-button:hover {
+      background-color: #cbcbcb; /* Change background color on hover to a slightly different shade */
+      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Change box shadow on hover */
+    }
+
+    #contentWrapper {
+      flex: 1;
+      overflow-y: hidden; /* Enable scrollbar for the content area */
+      max-height: calc(100vh - 20px); /* Adjust the max-height based on header and footer padding */
+      background-color: #e3e2e2;
+     
+      padding-left: 0.5px;
+      margin: 0;
+     
+    }
+
+    .container {
+      width: 490px;
+    padding-left: 10px;
+      margin: 0px;
+      padding-right: 1px;
+      box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
+      background-color: #f9f7f7;
+      /* Add box shadow */
+      /* Hide scrollbar for the container */
+      /* transition: background-color 0.3s; Add transition for a smooth color change */
+    }
+   
+
+    header, footer {
+        background-color: #fcfcfc;
+      color: rgb(16, 15, 15);
+      text-align: center;
+    
+    
+      position: sticky;
+      top: 0;
+      margin: 0;  /* Remove margin */
+      padding: 0; /* Remove padding */
+      /* Add z-index to ensure the header and footer appear above other elements */
+    }
+
+    main {
+    
+      overflow-y: auto;
+      max-height: calc(100vh - 80px); /* Adjusted for header and footer height */
+    }
+
+    .content-block {
+  background-color: #ffffff;
+  margin: 15px 0; /* Adjust the top and bottom margin */
+  padding: 10px;
+  box-shadow: 10 10px 10px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  border-radius: 10px;
+}
+.content-block h5 {
+  font-size: 18px; /* Adjust the font size for the heading */
+  margin-bottom: 5px; /* Add some space below the heading */
+}
+
+    .block-content {
+      text-align: center;
+    }
+
+    /* For contentBlock3 layout */
+    .block-content.left-content {
+  float: left;
+  width: 45%;
+}
+
+.block-content.right-content {
+  float: right;
+  width: 45%;
+}
+
+/* Clear the floats to ensure proper layout */
+.clearfix {
+  clear: both;
+}
+
+/* Optional: Style for the price and caption */
+.price {
+  font-size: 24px; /* Adjust the font size to make it larger than the heading */
+  font-weight: bold;
+}
+
+.content-block h5 {
+  font-size: 18px; /* Adjust the font size for the heading */
+  margin-bottom: 5px; /* Add some space below the heading */
+}
+
+    /* Optional: Style for the price and caption */
+    
+
+    
+    footer {
+      bottom: 0;
+     margin-bottom: 0px;
+     padding-bottom: 10px;
+      height: 50px;
+      /* Add z-index to ensure the footer appears above other elements */
+    }
+
+    /* Wi-Fi toggle styles */
+    .wifi-toggle-holder {
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      cursor: pointer;
+    }
+    
+    .wifi-toggle {
+  display: inline-block;
+  width: 45px;
+  height: 22px;
+  background-color:#d9d9d9;
+  border: 1px solid #ddd;
+  border-radius: 15px;
+  position: relative;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.wifi-toggle-indicator {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  transition: 0.3s;
+  left: 4px;
+}
+.wifi-toggle.active {
+  background-color: #000; /* Black background when on */
+  /* Border color when on */
+}
+/* Style for active (enabled) state */
+.wifi-toggle.active .wifi-toggle-indicator {
+  left: 22px;
+}
+.wifi-toggle-indicator.active{
+  background-color: black;
+}
+
+    /* Add this CSS for the contentBlock4 layout */
+#contentBlock4 .block-content.left-content {
+  float: left;
+  width: 45%;
+}
+
+#contentBlock4 .block-content.right-content {
+  float: right;
+  width: 45%;
+}
+
+/* Clear the floats to ensure proper layout */
+#contentBlock4 .clearfix {
+  clear: both;
+}
+
+#contentBlock4 .block-content {
+  margin: 10px 0; /* Adjust the top and bottom margin */
+  padding: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  border-radius: 10px;
+}
+
+#contentBlock4 .block-content h5 {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+#contentBlock4 .block-content .price {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+#contentBlock4 .rounded-button {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  font-size: 14px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  border-radius: 20px;
+  background-color: #fcfcfc; /* Pale peach color */
+  color: #333; /* Text color */
+  transition: background-color 0.3s, box-shadow 0.3s; /* Add transition for smoother color and shadow change */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Box shadow */
+}
+
+#contentBlock4 .rounded-button:hover {
+  background-color: #FFC0CB; /* Change background color on hover to a slightly different shade */
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Change box shadow on hover */
+}
+/* Add this CSS for the rounded corners of the button */
+#contentBlock5 .large-button {
+  width: calc(100% - 6px); /* Make the button full width with a 3px gap on each side */
+  margin: 0 3px; /* Add margin to the left and right to create the desired gap */
+  border-radius: 10px 10px 10px 10px;
+  height: 75%;
+  background-color: black; /* Apply rounded corners only to the bottom */
+}
+.fa-facebook {  
+  background: #3B5998;  
+  color: white;  
+}  
+.fa-instagram {  
+  background: #125688;  
+  color: white;  
+}
+body.dark-theme {
+      background-color: #2a4050;
+      color: white;
+    }
+
+    .dark-theme .content-block {
+      background-color: #2a4050;
+      color: white;
+    }
+
+    .dark-theme header,
+    .dark-theme footer {
+      background-color:#2a4050;
+      color: white;
+    }
+
+    .dark-theme .container {
+      background-color: #24323e /* Adjust container background color */
+    }
+    /* Standard scrollbar styling */
+::-webkit-scrollbar {
+  width: 4px;
+  padding-right: 1px;
+
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #b6b3b3;
+  border-radius: 6px;
+  transition: width 0.3s ease;
+  height: 10px;
+}
+
+/* Additional styling for the hidden 3px on hover */
+::-webkit-scrollbar-thumb:hover {
+  width: 8px; /* Original width + 3px */
+  
+}
+
+/* Hide the extra 3px */
+
+/* Show the extra 3px on hover */
+::-webkit-scrollbar-thumb:hover:before {
+  background-color: #888;
+}
+
+  </style>
+</head>
+<body>
+  <div id="contentWrapper">
+    <div class="container" style="padding-top: 0%;margin-top: 0%;">
+        <header >
+            <div class="block-content" style="height: 80px;">
+              <img src="con3.png" alt="Small Logo" height="60px" width="215px" style="margin-top: 5px; padding: 5px;border-radius: 15px;" >
+            </div>
+            <!-- Wi-Fi toggle holder -->
+            <div class="wifi-toggle-holder" onclick="toggleWifi()">
+              <!-- Wi-Fi toggle button -->
+              <div class="wifi-toggle" id="wifiToggle">
+                <!-- Wi-Fi toggle indicator -->
+                <div class="wifi-toggle-indicator"></div>
+              </div>
+            </div>
+            <!-- Theme switch button -->
+           
+          </header>
+      <main>
+        <!-- Inside the contentBlock2 -->
+        <div class="content-block" id="contentBlock2" style="margin-top: 10px;">
+          <h2></h2>
+          <center> <p class="caption"><small><b>Join Titan Kanya in educating and empowering young, <br>underprivileged girls to realise their dreams.</b></small></p></center> 
+          <div class="block-content">
+            <img src="con.png" alt="Image" height="100px" width="450px">
+          </div>
+        </div>
+        
+       <!-- Inside the contentBlock3 -->
+<div class="content-block" id="contentBlock3">
+  <!-- <div class="block-content left-content">
+    <h5>Amount Paid</h5>
+    <p class="price">Rs. 8795.00</p> 
+  </div>
+  <div class="block-content right-content">
+    <p>Date: January 1, 2024</p>
+    <p>Quantity: 5</p>
+  </div> -->
+  
+  <p><small>Amount Paid</small> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<b>30-11-2023&nbsp;|&nbsp;11:44 </b>
+<big><b>₹8,795.00<img src="i icon.png" height="15px" width="15px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;1.00 Item,1.00 Qty</b> </big></p> 
+</div>
+<div class="content-block" id="contentBlock4">
+    <p>Invoice: #24WONTS100003338<p>
+    <h6><strong>2674WM02-DL930-LADIES PREMIUM WORK WEAR</strong><br><img src="i icon.png" height="15px" width="15px"></h6>
+<div style="display: flex; justify-content: space-between;  line-height: 1; ">
+  <!-- Left side content -->
+  <div>
+ <small>   <p>Qty</p>
+    <p>Total</p></small>
+   
+    <!-- Add more left side items as needed -->
+  </div>
+
+  <!-- Right side content -->
+  <div style="text-align: right;">
+    <small>  <p>1.00</p>
+    <p>₹8795.00</p></small>
+   
+    <!-- Add more right side items as needed -->
+  </div>
+</div>
+ 
+
+<div id="detailsContent" style="display: none;">
+  <div style="display: flex; justify-content: space-between;   line-height: 1; ">
+    <!-- Left side content -->
+    <div>
+   <small>   <p>Brand</p>
+      <p>Code</p>
+      <p>Serial/Product UID</p>
+      <p>MRP</p>
+      <p>Price</p>
+      <p>GST<img src="i icon.png" height="15px" width="15px"></p>
+      <p>Total</p><br><br>
+      <p>Total Amount</p>
+      <p>Cash</p></small>
+      <!-- Add more left side items as needed -->
+    </div>
+
+    <!-- Right side content -->
+    <div  style="text-align: right;">
+   <small><p> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;TITAN</p>
+      <p> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;2674WM02</p>
+      <p> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;  10001090822184236</p>
+      <p> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; ₹8,795</p>
+      <p> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; ₹8,795</p><p> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;₹1,341.62</p>
+      <p> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;₹8,795</p><br><br>
+      <p> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;  ₹8,795</p>
+      <p> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;   ₹8,795</p></small></small>
+      <!-- Add more right side items as needed -->
+    </div>
+   
+  </div>
+  <br>
+
+    <table style="width: 100%;  font-size: small;padding-top:0px ;">
+      <thead>
+        <tr>
+          <th style="padding-top: 0px;margin-top: 0;">Tax</th>
+          <th>Taxable Amt</th>
+          <th>Rate</th>
+          <th style="text-align: right;">Tax Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>CGST</td>
+          <td>₹7,453.39</td>
+          <td>9.00%</td>
+          <td style="text-align: right;">₹670.81</td>
+        </tr>
+        <tr>
+          <td>SGST</td>
+          <td>₹7,453.39</td>
+          <td>9.00%</td>
+          <td style="text-align: right;">₹670.81</td>
+        </tr>
+        <!-- Add more rows as needed -->
+       
+      </tbody>
+     
+    </table>
+    <br>
+    <span style="text-align: left; width: 170px;font-size: smaller;">Total Amount paid</span>
+    <span style="text-align: right ; font-size: smaller;">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;₹8,795.00</span>
+    <center> <img src="con5.png" alt="Your Image Alt Text" style="margin-top: 20px;height: 110px; width: 350px;">
+    </center> 
+  
+</div>
+
+  <!-- Show/Hide Details buttons -->
+  <button class="rounded-button" onclick="toggleDetails()">Show Details</button>
+  <button class="rounded-button" onclick="hideDetails()" style="display: none;">Hide Details</button>
+
+
+</div>
+
+
+
+<div class="content-block" id="contentBlock5">
+   
+  
+    <!-- Download Invoice Button -->
+    <button class="large-button" onclick="downloadInvoice()">Download Invoice</button>
+  
+    <!-- Light Text -->
+    <p class="light-text">- or send invoice to your email</p>
+  
+    <!-- Email Input Field with Send Icon -->
+    <div class="email-input">
+      <input type="email" placeholder="Enter your email address here">
+      <button style="border-radius: 10px;" class="send-button" onclick="sendEmail()"><img src="icons8-send-24.png">
+      </button>
+    </div>
+  </div>
+       
+        <div class="content-block" id="contentBlock1">
+            <h6>MIDHU CN</p>
+            <small><b>Mobile: 9840396493</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GSTIN: 0<br>
+               
+               <b> Encircle Number:</b> 700070461061<br>
+               <b> Address:</b> NGLNo 124 A Joshua St Wcc Rdngl, NAGERCOIL, KARNATAKA, 629001
+                <br>              <b>Customer Id:</b> WONTS900011240</small>
+          </div>
+          <div class="content-block" id="contentBlock1">
+          <div class="social-icons">
+                <a href="#" target="_blank" class="social-icon"><img src="facebook.png" alt="Facebook"        class="icon-img icon-large"></a>
+                <a href="YOUR_WHATSAPP_LINK" target="_blank" class="social-icon"><img src="whatsapp-alt.png" alt="WhatsApp" class="icon-img icon-large"></a>
+                <a href="#" target="_blank" class="social-icon"><img src="insta.png" alt="Instagram" class="icon-img icon-large"></a>
+                <!-- Add more social media icons as needed -->
+                <p><small>Find us on your favourite social media</small></p>
+              </div>
+          </div>
+
+          <div class="content-block" id="contentBlock1">
+            <img src="con4.png" height="350px" width="430px">
+          </div>
+        <div class="content-block" id="contentBlock1">
+          <center>  Corporate Address</center>
+        <small><center>Titan World</center> 
+            <p>INTEGRITY, Titan Company Limited, No 193, Veerasandra, Electronics City Post, Off Hosur Main Road, Bangalore 560100</p></small> 
+        </div>
+        <div class="content-block" id="contentBlock1">
+            <div id="accordion">
+              <div class="card">
+                <div class="card-header" id="headingOne">
+                  <h5 class="mb-0">
+                    <center>
+                      <!-- Add the 'collapsed' class to indicate the initial state -->
+                      <button class="btn" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                        Terms and Conditions
+                        <!-- Add a span for the arrow icon -->
+                        <span class="dropdown-arrow"></span>
+                      </button>
+                    </center>
+                  </h5>
+                </div>
+          
+                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                  <div class="card-body" style="color: #6e6b6b;">
+                  1.  We look forward to hearing about your experience.Call us at 1800-266-0123 (toll-free) or email us at helpdesk@titan.co.in<br>
+                   2. Watches bought can be exchanged, only if unused and after due approval by Service center, Within 30 days from the date of purchase only at the same store where the purchase was made.<br>
+                    3.Enroll in the Encircle program, to begin a beautiful relationship with us. Avail exclusive offers and get updated on the latest trends.<br>
+                   4. Not sure what to gift? Want to Gift a Friend in another City? Check out our GIFT CARD exclusively designed for you.<br>
+                   5. Visit out Titan Care Centre to repair or refurbish your watch<br>
+                   6. In case of any dispute, the jurisdiction is in the courts of our registered office.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+     
+        <div class="content-block" id="contentBlock1">
+            <small>Invoice authenticity protected by Karnival<img src="green tick.png" height="20px" width="20px">
+            </small>
+          </div>
+
+          <div class="content-block" id="contentBlock1">
+            <p style="font-weight: lighter; font-size: x-small;color: #717171;">
+             We use cookies to optimize your visit. By continuing to browse our site you are accepting our  &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; cookie policy
+            </p>
+          </div>
+
+          <div class="content-block" id="contentBlock1">
+            <small>
+              
+            </small>
+          </div>
+          <div class="content-block" id="contentBlock1">
+            <small>
+              
+            </small>
+          </div>        
+      </main>
+      
+
+    
+      <footer style="height: 60px; padding-top: 5px;margin-top: 0;">
+        <div class="footer-buttons">
+          <button class="rounded-button" style="margin-top: 0;padding-bottom: 20px;"><img src="contacticon.png" height="20px" width="20px"> Contact Us</button>
+          <button class="rounded-button" style="margin-top: 0;padding-bottom: 20px;"><img src="protected.png" height="20px" width="20px">Secured by<img src="karnival.png" height="20px" width="20px"> Karnival</button>
+        </div>
+       
+      </footer>
+    </div>
+  </div>
+  <script>
+  function toggleWifi() {
+    var wifiToggle = document.getElementById('wifiToggle');
+    wifiToggle.classList.toggle('active');
+    
+    // Call the switchTheme function when the Wi-Fi toggle is clicked
+    switchTheme();
+  }
+
+  function toggleDetails() {
+    var detailsContent = document.getElementById('detailsContent');
+    var toggleButton = document.querySelector('.rounded-button');
+
+    if (detailsContent.style.display === 'none') {
+      detailsContent.style.display = 'block';
+      toggleButton.textContent = 'Hide Details';
+    } else {
+      detailsContent.style.display = 'none';
+      toggleButton.textContent = 'Show Details';
+    }
+  }
+  function hideDetails() {
+    var detailsContent = document.getElementById('detailsContent');
+    var showDetailsButton = document.querySelector('.rounded-button[onclick="toggleDetails"]');
+    var hideDetailsButton = document.querySelector('.rounded-button[onclick="hideDetails"]');
+
+    detailsContent.style.display = 'none';
+    showDetailsButton.style.display = 'block';
+    hideDetailsButton.style.display = 'none';
+  }
+
+  function switchTheme() {
+    var container = document.getElementById('contentWrapper');
+    var contentBlocks = document.querySelectorAll('.content-block');
+    var header = document.querySelector('header');
+    var footer = document.querySelector('footer');
+    var body = document.querySelector('body');
+
+    // Toggle between themes (blue-black shade and white text)
+    container.classList.toggle('dark-theme');
+    contentBlocks.forEach(function (block) {
+      block.classList.toggle('dark-theme');
+    });
+    header.classList.toggle('dark-theme');
+    footer.classList.toggle('dark-theme');
+    body.classList.toggle('dark-theme-body');
+  }
+
+
+  
+
+  
+  
+  
+  function downloadInvoice() {
+    var pdfFileURL = 'invoicefile.pdf'; // Replace with the actual URL
+
+    // Use CORS Anywhere to bypass CORS restrictions
+    var corsAnywhereURL = 'https://cors-anywhere.herokuapp.com/';
+    var finalURL = corsAnywhereURL + pdfFileURL;
+
+    // Use the fetch API to get the PDF file
+    fetch(finalURL)
+      .then(response => response.blob())
+      .then(blob => {
+        // Create a download link
+        var link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'invoice.pdf';
+
+        // Simulate a click on the link to trigger the download
+        link.click();
+      })
+      .catch(error => {
+        console.error('Error fetching the PDF file:', error);
+      });
+  }
+
+
+
+
+
+</script>
+ 
+  
+
+
+
+ 
+
+</body>
+</html>
